@@ -1,0 +1,11 @@
+<!--<tr>-->
+    <!--<th><label for="id_tipo">Tipo grupo:</label></th>-->
+    <!--<td>ls<input type="text" name="tipo" id="id_tipo" /></td>-->
+<!--</tr>-->
+{% load static %}
+<link href="{% static 'css/tester.css' %}" rel="stylesheet" media="screen">
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>

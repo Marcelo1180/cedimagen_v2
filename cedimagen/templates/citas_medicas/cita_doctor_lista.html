@@ -1,0 +1,14 @@
+<ul class="list-group">
+    {% for item in items %}
+    <li class="list-group-item">
+        <div class="radio">
+            <label>
+                <input type="radio" name="doctor_horario" value="{{ item.id }}">
+                <div class="icon-medkit dept-icon pull-right"></div>
+                <div class="doc-name-class">{{ item.doctor }}</div><span class="doc-title">Horario: {{ item.hora_ini }} - {{ item.hora_fin }}</span>
+                <!--<p>Nunc posuere hendrerit nunc, non rhoncus sem pellentesque nec.</p>-->
+            </label>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

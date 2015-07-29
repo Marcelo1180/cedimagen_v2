@@ -1,0 +1,21 @@
+@page {size: portrait;}
+@page rotada {size: landscape;}
+table {page: rotada; page-break-before: right;}
+@page {
+  size: Letter landscape;
+}
+@page {
+  size: auto;/* es el valor por defecto */
+  margin: 10%;
+}
+@page :left {
+ margin-left: 3cm;
+ margin-right: 4cm;
+}
+@page :right {
+ margin-left: 4cm;
+ margin-right: 3cm;
+}
+@page :first {
+ margin-top: 4cm;
+}

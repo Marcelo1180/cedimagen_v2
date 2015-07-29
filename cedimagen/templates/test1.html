@@ -1,0 +1,20 @@
+{% load dajaxice_templatetags %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.dajax.core.js' %}"></script>
+    {% dajaxice_js_import %}
+    <script type="text/javascript">
+        function my_callback(data){
+            alert(data.message);
+        }
+    </script>
+</head>
+<body>
+<input type="button" onclick="Dajaxice.citas_medicas.dajaxice_example(my_callback)" value="Get message from server!">
+</body>
+</html>

@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load etiquetas %}
+{% load static %}
+
+{% block content %}
+<div class="page-header">
+    <!--<h1>Paso 2. <small>Cita Medica</small></h1>-->
+    <h1>Paso 2. <small>Carrera a Elegir</small></h1>
+</div>
+{% if form.errors %}
+<p style="color: red;">
+    Por favor corrige lo siguiente: </p>
+{% endif %}
+<form action="/cita/" method="post" role="form" class="appt-form">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6" id="combo_especialidad">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    {{ form.tipo.label_tag }}
+                    <!--{{ form.tipo|addcss:"tipo form-control" }}-->
+                    <select name="tipo" id="id_tipo" class="tipo form-control">
+                        <option value="">Seleccione</option>
+                    </select>
+                    <div class="help-block with-errors">{{ form.tipo.errors }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    {{ form.grupo.label_tag }}
+                    <!--{{ form.grupo|addcss:"grupo form-control" }}-->
+                    <select name="grupo" id="id_grupo" class="grupo form-control">
+                        <option value="">Seleccione</option>
+                    </select>
+                    <div class="help-block with-errors">{{ form.grupo.errors }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    {{ form.especialidad.label_tag }}
+                    <!--{{ form.especialidad|addcss:"especialidad form-control" }}-->
+                    <select name="especialidad" id="id_especialidad" class="especialidad form-control">
+                        <option value="">Seleccione</option>
+                    </select>
+                    <div class="help-block with-errors">{{ form.especialidad.errors }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    {{ form.fecha.label_tag }}
+                    {{ form.fecha|addcss:"fecha form-control" }}
+                    <div class="help-block with-errors">{{ form.fecha.errors }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="row" id="lista_doctor"></div>
+
+            <!--<div class="list-group">-->
+                <!--<a href="#" class="list-group-item active">-->
+                    <!--<h4 class="list-group-item-heading">Item heading</h4>-->
+                    <!--<p class="list-group-item-text">Content goes here</p>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="well">-->
+                <!--<div id="datetimepicker4" class="input-append">-->
+                    <!--<input data-format="yyyy-MM-dd" type="text">-->
+                    <!--<span class="add-on">-->
+                      <!--<i data-time-icon="icon-time" data-date-icon="icon-calendar">-->
+                      <!--</i>-->
+                    <!--</span>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-default">Siguiente</button>
+</form>
+{% endblock content %}
+
+{% block script %}
+<style type="text/css">
+    .panel-body .radio label,.panel-body .checkbox label { display:block; }
+</style>
+<script src="{% static 'jquery/jquery-cascading-dropdown/jquery.cascadingdropdown_v2.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#combo_especialidad').cascadingDropdown({
+            textKey: 'label',
+            valueKey: 'value',
+            selectBoxes: [
+                {
+                    selector: '.tipo',
+                    paramName: 'tId',
+                    source: '/ajax_tipo/'
+                },
+                {
+                    selector: '.grupo',
+                    paramName: 'gId',
+                    requires: ['.tipo'],
+                    source: '/ajax_grupo/'
+                },
+                {
+                    selector: '.especialidad',
+                    requires: ['.tipo', '.grupo'],
+                    source: '/ajax_especialidad/',
+                    onChange: function(event, value, requiredValues) {
+                        ajax_lista_doctor();
+//                        var ajaxData = requiredValues;
+//                        ajaxData['eId'] = value;
+//                        ajaxData['fecha'] = $('.fecha').val();
+//                        ajaxData['fechay'] = $('.tipo').val();
+//                        ajaxData['cachay'] = $('.grupo').val();
+//                        $.get('/ajax_lista_doctor/', ajaxData, function(data) {
+//                            $('#lista_doctor').html(data);
+//                        });
+                    }
+                }
+            ]
+        });
+//        $('.fecha').change(function(){
+        $('.fecha').on('input',function(e){
+           ajax_lista_doctor();
+        });
+        function ajax_lista_doctor(){
+            var ajaxData = {};
+            ajaxData['tId'] = $('.tipo').val();
+            ajaxData['gId'] = $('.grupo').val();
+            ajaxData['eId'] = $('.especialidad').val();
+            ajaxData['fecha'] = $('.fecha').val();
+            $.get('/ajax_lista_doctor/', ajaxData, function(data) {
+                $('#lista_doctor').html(data);
+            });
+        }
+//        $('[data-toggle="select"]').select2();
+//        // Todo list
+//        $('.todo').on('click', 'li', function () {
+//            $(this).toggleClass('todo-done');
+//        });
+    });
+</script>
+{% endblock script %}

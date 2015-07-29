@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load etiquetas %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Paso 1. <small>Datos Personales</small></h1>
+</div>
+<form action="." method="post" role="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="form-group col-md-6">
+            {{ form.nombres.label_tag }}
+            {{ form.nombres|addcss:"form-control" }}
+            <div class="help-block with-errors">{{ form.nombres.errors }}</div>
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.apellidos.label_tag }}
+            {{ form.apellidos|addcss:"form-control" }}
+            <div class="help-block with-errors">{{ form.apellidos.errors }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            {{ form.direccion.label_tag }}
+            {{ form.direccion|addcss:"form-control" }}
+            <div class="help-block with-errors">{{ form.direccion.errors }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            {{ form.fecha_nacimiento.label_tag }}
+            {{ form.fecha_nacimiento|addcss:"form-control" }}
+            <div class="help-block with-errors">{{ form.fecha_nacimiento.errors }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            {{ form.telefono_fijo.label_tag }}
+            {{ form.telefono_fijo|addcss:"form-control" }}
+            <div class="help-block with-errors">{{ form.telefono_fijo.errors }}</div>
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.telefono_celular.label_tag }}
+            {{ form.telefono_celular|addcss:"form-control" }}
+            <div class="help-block with-errors">{{ form.telefono_celular.errors }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            {{ form.referencia.label_tag }}
+            {{ form.referencia|addcss:"form-control" }}
+            <div class="help-block with-errors">{{ form.direccion.errors }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            {{ form.foto.label_tag }}
+            {{ form.foto }}
+            <div class="help-block with-errors">{{ form.foto.errors }}</div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-default">Siguiente</button>
+</form>
+{% endblock %}
