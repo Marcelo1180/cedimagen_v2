@@ -3,11 +3,106 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Reporte de registro</title>
-    <link href="impresion.css" type="text/css" media="print" />
+    <style>
+        /* ---------------------------------------------------------- */
+        @page {size: portrait;}
+        @page rotada {size: landscape;}
+        table {page: rotada; page-break-before: right;}
+        @page {
+          size: Letter landscape;
+        }
+        @page {
+          size: auto;/* es el valor por defecto */
+          margin: 10%;
+        }
+        @page :left {
+         margin-left: 2cm;
+         margin-right: 3cm;
+        }
+        @page :right {
+         margin-left: 3cm;
+         margin-right: 2cm;
+        }
+        @page :first {
+         margin-top: 3cm;
+        }
+        /* ---------------------------------------------------------- */
+        body{
+            font-family: "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            font-size: 12px;
+        }
+        .linebr{
+            clear: both;
+            height: 5px;
+            background-color: #008f7c;
+            margin: 5px 0;
+        }
+        .head_der{
+            width: 200px;
+            float: right;
+        }
+        .head_izq{
+            width: 300px;
+            float: left;
+        }
+        .content{
+            text-align: center;
+        }
+        .datainfo{
+            text-align: left;
+        }
+        .datainfo span{
+            border-bottom: 1px dotted #003366;
+        }
+        .datainfo p{
+            text-align: justify;
+        }
+        .firma_left{
+            width: 220px;
+            float: left;
+            text-align: center;
+            border-top: 1px dotted #003366;
+        }
+        .firma_right{
+            width: 220px;
+            float: right;
+            text-align: center;
+            border-top: 1px dotted #003366;
+        }
+        .espace_content{
+            height: 300px;
+        }
+    </style>
 </head>
 <body>
 <div>
-Hola a todos Prueba de Registro
+    <div class="head_izq">
+        <h4>CENTRO DE DESARROLLO TECNOLOGICO</h4>
+        <p>Direccion calle leon de la barra N#1235</p>
+    </div>
+    <div class="head_der">
+        <p>Codigo: ITC-CA-PO-304</p>
+        <p>Revision: 6</p>
+        <p>Pagina 1 de 2</p>
+    </div>
+</div>
+<div class="linebr"></div>
+<div class="content">
+    <h3>INFORME DE REGISTRO</h3>
+    <br/>
+    <div class="datainfo">
+        <p><b>Tutor:</b> <span>Usuario de Prueba</span></p>
+        <p><b>Estudiante:</b> <span>Juan Marcelo Arteaga Gutierrez</span></p>
+        <br/>
+        <p><b>Fecha de Registro:</b> <span>17/05/2013</span></p>
+        <br/>
+        <p>Nota: Favor presente el siguiente reporte de inscripcion como prueba del registro en linea. </p>
+        <p>Este formulario permitirá recolectar la información mínima sobre posibles proveedores a ser inscritos en el Registro de Proveedores de EL FONDO ADAPTACIÓN.</p>
+        <p>La información que se registre en el formulario que se anexa, debe ser veraz, exacta, oportuna y vigente. Cualquier inexactitud en la información registrada podrá ser subsanada dentro de los quince (15) días corrientes siguientes a la solicitud de corrección por parte de EL FONDO ADAPTACIÓN. Si la información es engañosa y puede inducir a error a EL FONDO ADAPTACIÓN, la solicitud de inscripción en el Registro de Proveedores será rechazada de plano.</p>
+    </div>
+    <div class="espace_content"></div>
+    <div class="firma_left">Firma del Estudiante</div>
+    <div class="firma_right">Sello de Recepcion</div>
 </div>
 </body>
 </html>

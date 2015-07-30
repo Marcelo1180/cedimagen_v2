@@ -1,3 +1,4 @@
+/* <link href="impresion.css" type="text/css" media="print" /> */
 @page {size: portrait;}
 @page rotada {size: landscape;}
 table {page: rotada; page-break-before: right;}
@@ -18,4 +19,8 @@ table {page: rotada; page-break-before: right;}
 }
 @page :first {
  margin-top: 4cm;
+}
+.linebr{
+    height: 5px;
+    background-color: #008f7c;
 }

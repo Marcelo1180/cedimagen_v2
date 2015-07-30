@@ -93,3 +93,23 @@ def ajax_lista_doctor(request):
         dia = datetime.strptime(fecha, '%d/%m/%Y').weekday()
         items = Doctor_horario.objects.filter(tipo=id_tipo, grupo=id_grupo, especialidad=id_especialidad, dia=dia)
     return render(request, 'citas_medicas/cita_doctor_lista.html', {'items': items})
+# -------------------------------------------------------------------------------------
+# REPORTES
+# -------------------------------------------------------------------------------------
+import ho.pisa as pisa
+import cStringIO as StringIO
+import cgi
+from django.template import RequestContext
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+
+def generar_pdf(html):
+    result = StringIO.StringIO()
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), mimetype='application/pdf')
+    return HttpResponse('Error al generar el PDF: %s' % cgi.escape(html))
+
+def pdf_registro(request):
+    html = render_to_string('reportes/registro.html', {'pagesize':'A4'}, context_instance=RequestContext(request))
+    return generar_pdf(html)

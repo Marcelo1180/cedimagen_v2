@@ -29,4 +29,8 @@ urlpatterns = [
     url(r'^ajax_grupo/$', 'citas_medicas.views.ajax_grupo'),
     url(r'^ajax_especialidad/$', 'citas_medicas.views.ajax_especialidad'),
     url(r'^ajax_lista_doctor/$', 'citas_medicas.views.ajax_lista_doctor'),
+    # -------------------------------------------------------------------------------------
+    # AJAX
+    # -------------------------------------------------------------------------------------
+    url(r'^pdf_registro/$', 'citas_medicas.views.pdf_registro'),
 ]
